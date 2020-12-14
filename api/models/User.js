@@ -44,8 +44,4 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-<<<<<<< HEAD
-module.exports = mongoose.Model("Model", ModelSchema);
-=======
-module.exports = mongoose.Model('User', UserSchema)
->>>>>>> acae2934391478cc8f1873aac8116e2fefbb37c2
+module.exports = mongoose.Model("User", UserSchema);
