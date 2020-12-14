@@ -13,7 +13,7 @@ app.get('/', ( req, res ) => {
     res.send('API Running')
 })
 
-app.use('/api/landing', controllers.landing)
+app.use('/api/kickoff', controllers.kickoff)
 
 app.listen(PORT, () => {
     console.log(`Server on port ${PORT}`)

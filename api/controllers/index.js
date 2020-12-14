@@ -1,3 +1,3 @@
 module.exports = {
-    landing: require('./controllerOne')
+    kickoff: require('./kickoff')
 }
