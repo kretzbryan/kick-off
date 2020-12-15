@@ -1,6 +1,7 @@
 const express = require('express');
 const router =  express.Router();
-const db = require('../models')
+const db = require('../models');
+const User = require('../models/User');
 
 router.get('/', async (req, res) => {
     try {
@@ -11,6 +12,15 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/related', async ( req, res ) => {
+    try {
+        const user = await db.User.findById(req.user.id)
+        const related = await db.Kickoff.find({interests: {$in: user.interests}});
+        console.log(related);
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 router.post('/', async ( req, res ) => {
     try {
@@ -18,9 +28,11 @@ router.post('/', async ( req, res ) => {
         // const newKickoff = new db.Kickoff({
         //     title,
         //     startTime,
+        //     user,
+        //     group,
         //     description,
         //     interests
-        // // })
+        // })
         // const user = await db.User.findById(req.params.id).select('-password')
         // await user.createdEvents.push(newKickoff)
         // const kickoff = await newKickoff.save();
