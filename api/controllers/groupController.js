@@ -55,7 +55,7 @@ router.get('/usergroups', auth, async (req, res) => {
 router.get('/:id', async (req, res) => {
 
     try{
-        const group = await GroupModel.findOne({id: req.params.id})
+        const group = await GroupModel.findOne({_id: req.params.id})
         res.json(group);
     }catch (err) {
         res.status(500).send(err);
@@ -63,7 +63,7 @@ router.get('/:id', async (req, res) => {
 });
 //Update Group
 router.put('/:id/update', async (req, res) => {
-    const query = {id: req.params.id}
+    const query = {_id: req.params.id}
     const updates =  {interests: req.body.interests, users: req.body.users, upcomingKickoffs: req.body.upcomingKickoffs}
 
     try {
@@ -71,7 +71,7 @@ router.put('/:id/update', async (req, res) => {
         await update.save();
         res.json(update)
     } catch (err) {
-        res.status(500).send(err)
+        res.status(500).json(err.message)
     }
 })
 
