@@ -1,1 +1,78 @@
 
+
+
+.homepage-top{
+    display: flex;
+    padding: 25px;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+    min-height: 20vh;
+    position: relative;
+}
+
+.homepage-top >h3{
+    text-align: center;
+    color: #6F6C6C;
+    /* border: 1px solid yellow; */
+    margin-right: 300px;
+    font-family: Raleway;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.welcome-container{
+    position: absolute;
+    right: 30px;
+    top: -55px;
+    /* border: 1px solid red; */
+    width: 350px;
+}
+
+
+.card-body{
+    text-align: center;
+}
+
+.welcome-container form{
+    display: flex;
+    flex-direction: column;
+}
+.welcome-container h3{
+    width: 100%;
+    color: rgb(12, 12, 12);
+}
+
+.welcome-container input {
+    margin-bottom: 12px;
+    color: black;
+}
+
+.create-new-acc-btn{
+    background-color: #3EC6FF;
+    border:1px solid black;
+    border-radius: 50px;
+    height: 35px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 7px;
+    outline: none;
+    text-decoration: none;
+    
+}
+.create-new-acc-btn:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.welcome-container button[type="submit"] {
+    background-color: #41F59F;
+    border: 1px solid black;
+    height: 35px;
+    border-radius: 18px; 
+}
+
+.welcome-container form button{
+    outline: none;
+}

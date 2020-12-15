@@ -1,7 +1,10 @@
 import React, { useState, usecontext } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import "../styles/Homepage.css";
 
+///importing icons from react-icons after installation
+import * as Bi from "react-icons/bi";
 export default function Homepage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -39,21 +42,27 @@ export default function Homepage() {
 
 
     return (
-        <div className="container-md">
-            <div className="welcome-container card align-items-center">
-                <div className="card-body">
-                    <h2 className="card-title">Welcome to Kickoff!</h2>
-                    <form onSubmit={submitForm} className="align-items-center">
-                        <input className="" onChange={usernameValue} type="text" placeholder="Username" />
-                        <input className="row" onChange={passwordValue} type="password" placeholder="Password" value={password} />
-                        <div>
-                            <button >Forgot Password </button>
-                            <input type="submit" value="Login" />
-                        </div>
-                    </form>
-                    <button>Create New Account</button>
+        <div className="main-container homepage">
+            <div className="homepage-top">
+                <h3 className="">Sharing Experiences, <br /> Safely.</h3>
+                <div className="welcome-container">
 
+                    <div className="card-body">
+                        <h3 className="card-title">Welcome!</h3>
+                        <form onSubmit={submitForm} className="form-group">
+                            <input className="form-control" onChange={usernameValue} type="text" placeholder="Username" />
+                            <input className="form-control" onChange={passwordValue} type="password" placeholder="Password" value={password} />
+                            <div className="input-group row justify-content-around">
+                                <a href="#" className='create-new-acc-btn'>Create New Account +</a>
+
+                                <button type="submit" className="wc-login-btn">Login <Bi.BiLogIn /> </button>
+                            </div>
+                        </form>
+                        <Link >Forgot Password </Link>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     )
