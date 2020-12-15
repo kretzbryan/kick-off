@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function Homepage() {
-    const [username, setUsername] = useState();
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     //creating a history to redirect
@@ -39,16 +39,21 @@ export default function Homepage() {
 
 
     return (
-        <div>
-            <div className="welcome-container">
-                <h2>Welcome to Kickoff!</h2>
-                <form onSubmit={submitForm}>
-                    <input onChange={usernameValue} type="text" placeholder="Username" />
-                    <input onChange={passwordValue} type="password" placeholder="Password" value={password} />
-                    <button >Forgot Password </button>
-                    <input type="submit" value="Login" />
-                </form>
-                <button>Create New Account</button>
+        <div className="container-md">
+            <div className="welcome-container card align-items-center">
+                <div className="card-body">
+                    <h2 className="card-title">Welcome to Kickoff!</h2>
+                    <form onSubmit={submitForm} className="align-items-center">
+                        <input className="" onChange={usernameValue} type="text" placeholder="Username" />
+                        <input className="row" onChange={passwordValue} type="password" placeholder="Password" value={password} />
+                        <div>
+                            <button >Forgot Password </button>
+                            <input type="submit" value="Login" />
+                        </div>
+                    </form>
+                    <button>Create New Account</button>
+
+                </div>
             </div>
         </div>
     )
