@@ -7,8 +7,12 @@ router.get('/', async (req, res) => {
     try {
         const kickoffs = await db.Kickoff.find({});
         res.json(kickoffs)
+        if(!kickoffs) {
+            res.json('No kickoffs yet')
+        }
     } catch (err) {
         console.log(err)
+        res.json('An error occured')
     }
 })
 
@@ -34,8 +38,8 @@ router.post('/', async ( req, res ) => {
             description,
             interests
         })
-        const user = await db.User.findById(req.params.id).select('-password')
-        await user.createdEvents.push(newKickoff)
+        const foundUser = await db.User.findById(req.params.id).select('-password')
+        await foundUser.createdEvents.push(newKickoff)
         const kickoff = await newKickoff.save();
         res.json(kickoff)
     } catch (err) {

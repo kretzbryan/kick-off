@@ -5,4 +5,4 @@ const InterestSchema = new mongoose.Schema({
     description: {type: String, required: true}
 })
 
-module.exports = mongoose.Model('Interests', InterestSchema)
+module.exports = mongoose.model('Interests', InterestSchema)
