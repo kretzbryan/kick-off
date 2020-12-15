@@ -1,12 +1,12 @@
 const express = require('express');
 const router =  express.Router();
 const db = require('../models');
-const auth = require('../middleware/authentication')
+const auth = require('../middleware/authentication');
 
 router.get('/', async (req, res) => {
     try {
-        // const kickoffs = await db.Kickoff.find({});
-        // res.json(kickoffs)
+        const kickoffs = await db.Kickoff.find({});
+        res.json(kickoffs)
     } catch (err) {
         console.log(err)
     }
@@ -16,7 +16,8 @@ router.get('/related', auth,  async ( req, res ) => {
     try {
         const user = await db.User.findById(req.user)
         const related = await db.Kickoff.find({interests: {$in: user.interests}});
-        console.log(related);
+        
+        res.json(related)
     } catch (err) {
         console.log(err)
     }
@@ -24,19 +25,19 @@ router.get('/related', auth,  async ( req, res ) => {
 
 router.post('/', async ( req, res ) => {
     try {
-        // const { title,  startTime, description, interests } = req.body
-        // const newKickoff = new db.Kickoff({
-        //     title,
-        //     startTime,
-        //     user,
-        //     group,
-        //     description,
-        //     interests
-        // })
-        // const user = await db.User.findById(req.params.id).select('-password')
-        // await user.createdEvents.push(newKickoff)
-        // const kickoff = await newKickoff.save();
-        // res.json(kickoff)
+        const { title,  startTime, description, interests, user, group } = req.body
+        const newKickoff = new db.Kickoff({
+            title,
+            startTime,
+            user,
+            group,
+            description,
+            interests
+        })
+        const user = await db.User.findById(req.params.id).select('-password')
+        await user.createdEvents.push(newKickoff)
+        const kickoff = await newKickoff.save();
+        res.json(kickoff)
     } catch (err) {
         console.log(err)
     }
@@ -46,8 +47,8 @@ router.post('/', async ( req, res ) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        // const kickoff = await db.Kickoff.findById(req.params.id);
-        // res.json(kickoff)
+        const kickoff = await db.Kickoff.findById(req.params.id);
+        res.json(kickoff)
     } catch (err) {
         console.log(err)
     }
@@ -55,8 +56,8 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async ( req, res ) => {
     try {
-        // const updatedKickoff = await db.Kickoff.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        // res.json(updatedKickoff)
+        const updatedKickoff = await db.Kickoff.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.json(updatedKickoff)
     } catch (err) {
         console.log(err)
     }
