@@ -1,17 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const GroupModel = require('../models/Group')
+const GroupModel = require('../models/Group');
+const auth = require('../middleware/authentication')
 
 //Create a group
 
-router.get('/create', (req, res) => {
-    const group = new GroupModel(req.body);
-
+router.post('/create', auth, async (req, res) => {
+    const { name, interests, users, upcomingKickoffs} = req.body
+    
     try {
+        const group = new GroupModel({
+            name,
+            creator: req.user,
+            interests,
+            users,
+            upcomingKickoffs,
+        });
+
         await group.save();
-        res.send(group);
+        res.json(group);
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).json(err.message);
     }
 });
 
@@ -20,22 +29,22 @@ router.get('/create', (req, res) => {
 //get all groups
 
 router.get('/all', async (req, res) => {
-    const groups = await GroupModel.find({})
 
     try {
-        res.send(groups);
+        const groups = await GroupModel.find({})
+        res.json(groups);
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).json(err.message);
     }
 })
 
 //get a users groups
 
-router.get('/usergroups', async (req, res) => {
-    const usergroups = await GroupModel.find({users: req.params.user_id})
+router.get('/usergroups', auth, async (req, res) => {
 
     try{
-        res.send(usergroups)
+        const usergroups = await GroupModel.find({creator: req.user})
+        res.json(usergroups)
     } catch (err) {
         res.status(500).send(err);
     }
@@ -43,24 +52,24 @@ router.get('/usergroups', async (req, res) => {
 
 //get a group by id
 
-router.get('/group/:id', async (rec, res) => {
-    const group = await GroupModel.findOne({id: req.params.id})
+router.get('/:id', async (req, res) => {
 
     try{
-        res.send(group);
+        const group = await GroupModel.findOne({id: req.params.id})
+        res.json(group);
     }catch (err) {
         res.status(500).send(err);
     }
 });
 //Update Group
-router.put('/update/:id', async (req, res) => {
+router.put('/:id/update', async (req, res) => {
     const query = {id: req.params.id}
     const updates =  {interests: req.body.interests, users: req.body.users, upcomingKickoffs: req.body.upcomingKickoffs}
-    const update = GroupModel.findOneAndUpdate(query, updates, {new: true});
 
     try {
+        const update = await GroupModel.findOneAndUpdate(query, updates, {new: true});
         await update.save();
-        res.send(update)
+        res.json(update)
     } catch (err) {
         res.status(500).send(err)
     }

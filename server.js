@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/kickoff', controllers.kickoff)
 app.use('/user', userController);
+app.use('/groups', controllers.group)
 
 //run when client connects
 // io.on("connection", (socket) => {
