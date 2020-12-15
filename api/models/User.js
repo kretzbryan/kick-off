@@ -8,22 +8,22 @@ const UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
     icon: {type: Number},
     password: { type: String, required: true },
-    interests: {
+    interests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Interests'
-    },
-    createdKickoffs: {
+    }],
+    createdKickoffs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Kickoffs'
-    },
-    pastKickoffs: {
+    }],
+    pastKickoffs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Kickoffs'
-    },
-    friends: {
+    }],
+    friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 }, { timestamps: true })
 
 module.exports = mongoose.model('User', UserSchema)

@@ -1,0 +1,14 @@
+
+
+nav{
+    height: 70px;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;    
+}
+
+nav h1{
+margin: 0;
+margin-left: 25px;
+}
+
