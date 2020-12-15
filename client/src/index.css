@@ -14,4 +14,5 @@ code {
 
 #root{
   min-height: 100vh;
+  background: linear-gradient(90deg, #70E1F5 0%, #FFD194 100%);
 }
