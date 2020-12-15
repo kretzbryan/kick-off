@@ -6,10 +6,21 @@ const db = require('../models')
 router.post('/', auth, async ( req, res ) => {
     try {
         const newInterest = new db.Interest({
-            tag : req.body,tag
+            tag : req.body.tag
         })
-        await newInterest.save();
-        res.json(newInterest);
+        const savedInterest = await newInterest.save();
+        res.json(savedInterest);
+    } catch (err) {
+        res.json(err)
+    }
+})
+
+
+
+router.get('/all', async ( req, res ) => {
+    try {
+        const tags = await db.Interest.find({});
+        res.json(tags)
     } catch (err) {
         res.json(err)
     }

@@ -6,6 +6,9 @@ const bcrypt = require("bcryptjs");
 ///adding the file from the middleware
 const auth = require("../middleware/authentication");
 
+
+
+
 Router.post("/sign-up", async (req, res) => {
     try {
         //SET UP VALUES FROM THE BODY TO NEW FIELDS
@@ -92,6 +95,18 @@ Router.post("/login", async (req, res) => {
         console.log(error);
     }
 });
+
+
+// Edits profile
+Router.put('/', auth, async ( req, res ) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(req.user, req.body, { new: true })
+        res.json(updatedUser)
+    } catch (err) {
+        res.json(err.message)
+    }
+})
+
 
 //router to delete an account
 Router.delete("/deleteAccount", auth, async (req, res) => {

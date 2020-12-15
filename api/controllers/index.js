@@ -1,3 +1,5 @@
 module.exports = {
-    kickoff: require('./kickoff')
+    kickoff: require('./kickoff'),
+    group: require('./groupController'),
+    interest: require('./interest')
 }
