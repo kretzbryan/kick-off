@@ -9,24 +9,22 @@ const UserSchema = new mongoose.Schema(
     username: { type: String, required: true },
     icon: { type: Number },
     password: { type: String, required: true },
-    interests: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Interests",
-    },
-    createdKickoffs: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Kickoffs",
-    },
-    pastKickoffs: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Kickoffs",
-    },
-    friends: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  },
-  { timestamps: true }
-);
+    interests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Interests'
+    }],
+    createdKickoffs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Kickoffs'
+    }],
+    pastKickoffs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Kickoffs'
+    }],
+    friends: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+}, { timestamps: true })
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema)

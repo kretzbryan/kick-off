@@ -26,4 +26,4 @@ const KickoffSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.Model("Kickoff", KickoffSchema);
+module.exports = mongoose.model('Kickoff', KickoffSchema)

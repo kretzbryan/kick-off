@@ -58,16 +58,16 @@ Router.post("/sign-up", async (req, res) => {
 
 Router.post("/login", async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
         ///LETS CHECK FOR VALIDATION    
-        if (!email || !password) {
+        if (!username || !password) {
             return res.status(400).json({ msg: "Not all fields have been entered." });
         }
 
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ username: username });
         if (!user) {
-            return res.status(400).json({ msg: "No account with this email has been registered." });
+            return res.status(400).json({ msg: "No account with this username has been registered." });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
