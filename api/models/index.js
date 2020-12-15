@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const db = 'mongodb://localhost:27017';
-
+require("dotenv").config();
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.mongoURI || db, {
+        await mongoose.connect(process.env.MONGODB_URI || db, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
