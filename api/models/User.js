@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
-    username: {type: String, required: true, unique: true},
-    email: {type: String, required: true, unique: true},
-    username: {type: String, required: true},
-    icon: {type: Number},
+const UserSchema = new mongoose.Schema(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    username: { type: String, required: true },
+    icon: { type: Number },
     password: { type: String, required: true },
     interests: [{
         type: mongoose.Schema.Types.ObjectId,
