@@ -1,3 +1,4 @@
 module.exports = {
-    kickoff: require('./kickoff')
+    kickoff: require('./kickoff'),
+    interest: require('./interest')
 }
