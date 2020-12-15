@@ -1,7 +1,7 @@
 const express = require('express');
 const router =  express.Router();
 const db = require('../models');
-const User = require('../models/User');
+const auth = require('../middleware/authentication')
 
 router.get('/', async (req, res) => {
     try {
@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/related', async ( req, res ) => {
+router.get('/related', auth,  async ( req, res ) => {
     try {
-        const user = await db.User.findById(req.user.id)
+        const user = await db.User.findById(req.user)
         const related = await db.Kickoff.find({interests: {$in: user.interests}});
         console.log(related);
     } catch (err) {
@@ -59,6 +59,45 @@ router.put('/:id', async ( req, res ) => {
         // res.json(updatedKickoff)
     } catch (err) {
         console.log(err)
+    }
+})
+
+
+router.delete('/:id', auth, async ( req, res ) => {
+    try {
+
+        const kickoff = await db.Kickoff.findById(req.params.id)
+        const user = await db.User.findById(req.user)
+
+        // if there is a group associated with the kickoff, the kickoff creator or group creator can delete it.
+
+        if (kickoff.group !== null) {
+            const group = await db.Group.findById(kickoff.group);
+
+            if (group.creator === user._id || kickoff.creator === user._id){ 
+
+                //  if the creator of the group is also the creator of the kickoff, this removes the id from the users created kickoffs
+                if(group.creator !== user._id) {
+                    await user.createdKickoffs.remove(kickoff);
+                    await user.save();
+                }
+
+                await group.upcomingKickoffs.remove(kickoff);
+                await group.save()
+                await kickoff.remove();
+                res.json('Deleted!')
+            }
+        }
+
+        if ( kickoff.creator === user._id) {
+            await user.createdKickoffs.remove(kickoff);
+            await user.save();
+            await kickoff.remove();
+            res.json('Deleted!')
+        }
+    } catch (err) {
+        console.log(err)
+        res.json(err)
     }
 })
 
