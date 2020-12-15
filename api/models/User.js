@@ -7,11 +7,12 @@ const UserSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
     username: {type: String, required: true},
     icon: {type: Number},
+    password: { type: String, required: true },
     interests: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Interests'
     },
-    upcomingKickoffs: {
+    createdKickoffs: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Kickoffs'
     },
@@ -23,6 +24,6 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
-module.exports = mongoose.Model('User', UserSchema)
+module.exports = mongoose.model('Model', UserSchema)
