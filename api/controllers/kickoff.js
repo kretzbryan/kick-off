@@ -3,13 +3,13 @@ const router =  express.Router();
 const db = require('../models');
 const auth = require('../middleware/authentication');
 
+
+// Get All kickoffs
+// This has been tested
 router.get('/', async (req, res) => {
     try {
         const kickoffs = await db.Kickoff.find({});
         res.json(kickoffs)
-        if(!kickoffs) {
-            res.json('No kickoffs yet')
-        }
     } catch (err) {
         console.log(err)
         res.json('An error occured')
@@ -27,6 +27,9 @@ router.get('/related', auth,  async ( req, res ) => {
     }
 })
 
+
+
+// This has been tested
 router.post('/', auth, async ( req, res ) => {
     const { title,  startTime, description, interests, user, group } = req.body
     try {
@@ -39,7 +42,8 @@ router.post('/', auth, async ( req, res ) => {
             interests
         })
         const foundUser = await db.User.findById(req.user).select('-password')
-        await foundUser.createdKickoffs.push(newKickoff)
+        await foundUser.createdKickoffs.push(newKickoff);
+        await foundUser.save();
         const kickoff = await newKickoff.save();
         res.json(kickoff)
     } catch (err) {
@@ -49,6 +53,7 @@ router.post('/', auth, async ( req, res ) => {
 
 
 
+// This has been tested
 router.get('/:id', async (req, res) => {
     try {
         const kickoff = await db.Kickoff.findById(req.params.id);
