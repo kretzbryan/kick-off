@@ -27,9 +27,9 @@ router.get('/related', auth,  async ( req, res ) => {
     }
 })
 
-router.post('/', async ( req, res ) => {
+router.post('/', auth, async ( req, res ) => {
+    const { title,  startTime, description, interests, user, group } = req.body
     try {
-        const { title,  startTime, description, interests, user, group } = req.body
         const newKickoff = new db.Kickoff({
             title,
             startTime,
@@ -38,12 +38,12 @@ router.post('/', async ( req, res ) => {
             description,
             interests
         })
-        const foundUser = await db.User.findById(req.params.id).select('-password')
-        await foundUser.createdEvents.push(newKickoff)
+        const foundUser = await db.User.findById(req.user).select('-password')
+        await foundUser.createdKickoffs.push(newKickoff)
         const kickoff = await newKickoff.save();
         res.json(kickoff)
     } catch (err) {
-        console.log(err)
+        res.json(err.message)
     }
 })
 
