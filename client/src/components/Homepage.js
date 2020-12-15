@@ -62,8 +62,8 @@ export default function Homepage() {
 
                     </div>
                 </div>
-
             </div>
+            <div className='welcome-image-container'></div>
         </div>
     )
 }

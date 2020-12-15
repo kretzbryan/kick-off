@@ -58,9 +58,9 @@
     align-items: center;
     padding: 0 7px;
     outline: none;
-    text-decoration: none;
-    
+    text-decoration: none;    
 }
+
 .create-new-acc-btn:hover{
     text-decoration: none;
     color: black;
@@ -73,6 +73,42 @@
     border-radius: 18px; 
 }
 
+
 .welcome-container form button{
     outline: none;
+}
+
+/*              CSS FOR THE IMAGE IN WELCOME PAGE     */
+
+.welcome-image-container{
+    width: 97vw;
+    height: 40vw;
+    background-image: url("../img/people.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    margin-top: 50px;
+}
+
+
+@media (max-width: 780px){
+    #root{
+        min-width: 376px;
+    }
+    .homepage-top{
+        flex-direction: column;
+        align-items: center;
+    }
+    .homepage-top > h3{
+        width: 100%;
+        margin: 0;
+        margin-bottom: 50px;
+    }
+    .welcome-container{
+        position:unset;
+    }
+    .welcome-image-container{
+        margin-top: 0;
+    }
 }
