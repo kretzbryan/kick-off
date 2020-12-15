@@ -17,9 +17,10 @@ router.post('/', auth, async ( req, res ) => {
 
 router.get('/:search', async ( req, res ) => {
     try {
-        
+        const foundTags = await db.Interest.find({"tag": /.*req.params.search.*/});
+        res.json(tags)
     } catch (err) {
-        
+        res.json(err)
     }
 })
 
