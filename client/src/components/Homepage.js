@@ -48,7 +48,7 @@ export default function Homepage() {
       //login the user
       console.log(loginResponse);
       setPassword("");
-      history.push("/room");
+      history.push("/kickoffhub");
     } catch (error) {
       console.log(error.response.data.msg);
     }
