@@ -46,6 +46,11 @@ Router.post("/sign-up", async (req, res) => {
             username,
             email,
             password: passwordHash,
+            interests: [],
+            createdKickoffs: [],
+            pastKickoffs: [],
+            friends: [],
+            icon: 0,
         })
         // const savedUser = await newUser.save();
         const savedUser = await User.create(newUser);
@@ -87,6 +92,11 @@ Router.post("/login", async (req, res) => {
                 username: user.username,
                 firstName: user.firstName,
                 lastname: user.lastName,
+                interests: user.interests,
+                createdKickoffs: user.interests,
+                pastKickoffs: user.pastKickoffs,
+                friends: user.friends,
+                icon: user.icon,
             },
         })
 
@@ -98,7 +108,7 @@ Router.post("/login", async (req, res) => {
 
 
 // Edits profile
-Router.put('/', auth, async ( req, res ) => {
+Router.put('/', auth, async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(req.user, req.body, { new: true })
         res.json(updatedUser)
@@ -125,10 +135,11 @@ Router.delete("/deleteAccount", auth, async (req, res) => {
 Router.post("/isTokenValid", async (req, res) => {
     try {
         const token = req.header("x-auth-token");
+        console.log(req.header, req.body, token)
         if (!token) {
             return res.json(false);
         }
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = await jwt.verify(token, process.env.JWT_SECRET);
         if (!verified) {
             return res.json(false);
         }

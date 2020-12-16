@@ -1,13 +1,21 @@
-import React, { useState, usecontext } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "../styles/Homepage.css";
 
+///importing userContext
+import UserContext from "../context/UserContext";
+
 ///importing icons from react-icons after installation
 import * as Bi from "react-icons/bi";
+// import { response } from 'express';
+
 export default function Homepage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    //User
+    const { setUserData } = useContext(UserContext);
 
     //creating a history to redirect
     const history = useHistory();
@@ -27,13 +35,22 @@ export default function Homepage() {
 
         try {
             const loginUser = { username, password };
+            const loginResponse = await axios.post("http://localhost:5000/user/login", loginUser);
+
+            setUserData({
+                token: loginResponse.data.token,
+                user: loginResponse.data.user,
+            });
+
+            localStorage.setItem("auth-token", loginResponse.data.token);
 
             //login the user
-            console.log(loginUser);
+            console.log(loginResponse);
             setPassword("");
+            history.push("/room")
         }
-        catch {
-
+        catch (error) {
+            console.log(error.response.data.msg)
         }
     }
 
