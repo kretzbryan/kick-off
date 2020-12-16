@@ -76,5 +76,14 @@ router.put('/:id/update', async (req, res) => {
     }
 })
 
+router.delete('/delete', async (req, res) => {
+    try {
+        const deletedGroup = await GroupModel.findByIdAndDelete(req.body.id)
+        res.json(deletedGroup)
+    }catch (err) {
+        res.json(err.message)
+    }
+})
+
 
 module.exports = router;
