@@ -1,13 +1,14 @@
-
-
-nav{
-    height: 70px;
-    display: flex;
-    align-items: center;    
+nav {
+  height: 70px;
+  display: flex;
+  align-items: center;
 }
 
-nav h1{
-margin: 0;
-margin-left: 25px;
+nav h1 {
+  margin: 0;
+  margin-left: 25px;
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
 }
-
