@@ -1,75 +1,86 @@
-import React, { useState, usecontext } from "react";
+import React, { useState, useContext } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "../styles/Homepage.css";
 
+///importing userContext
+import UserContext from "../context/UserContext";
+
 ///importing icons from react-icons after installation
 import * as Bi from "react-icons/bi";
+// import { response } from 'express';
+
 export default function Homepage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-  //creating a history to redirect
-  const history = useHistory();
+    //User
+    const { setUserData } = useContext(UserContext);
 
-  const usernameValue = (event) => {
-    setUsername(event.target.value);
-  };
+    //creating a history to redirect
+    const history = useHistory();
 
-  const passwordValue = (event) => {
-    setPassword(event.target.value);
-  };
 
-  const submitForm = async (event) => {
-    event.preventDefault();
+    const usernameValue = (event) => {
+        setUsername(event.target.value);
+    }
 
-    try {
-      const loginUser = { username, password };
+    const passwordValue = (event) => {
+        setPassword(event.target.value);
+    }
 
-      //login the user
-      console.log(loginUser);
-      setPassword("");
-    } catch {}
-  };
 
-  return (
-    <div className="main-container homepage">
-      <div className="homepage-top">
-        <h3 className="">
-          Sharing Experiences, <br /> Safely.
-        </h3>
-        <div className="welcome-container">
-          <div className="card-body">
-            <h3 className="card-title">Welcome!</h3>
-            <form onSubmit={submitForm} className="form-group">
-              <input
-                className="form-control"
-                onChange={usernameValue}
-                type="text"
-                placeholder="Username"
-              />
-              <input
-                className="form-control"
-                onChange={passwordValue}
-                type="password"
-                placeholder="Password"
-                value={password}
-              />
-              <div className="input-group row justify-content-around">
-                <a href="#" className="create-new-acc-btn">
-                  &nbsp;Create New Account &nbsp; <Bi.BiPlus />
-                </a>
+    const submitForm = async (event) => {
+        event.preventDefault();
 
-                <button type="submit" className="wc-login-btn">
-                  Login <Bi.BiLogIn />{" "}
-                </button>
-              </div>
-            </form>
-            <Link>Forgot Password </Link>
-          </div>
+        try {
+            const loginUser = { username, password };
+            const loginResponse = await axios.post("http://localhost:5000/api/user/login", loginUser);
+
+            setUserData({
+                token: loginResponse.data.token,
+                user: loginResponse.data.user,
+            });
+
+            localStorage.setItem("auth-token", loginResponse.data.token);
+
+            //login the user
+            console.log(loginResponse);
+            setPassword("");
+            history.push("/room")
+        }
+        catch (error) {
+            console.log(error.response.data.msg)
+        }
+    }
+
+
+
+
+
+    return (
+        <div className="main-container homepage">
+            <div className="homepage-top">
+                <h3 className="">Sharing Experiences, <br /> Safely.</h3>
+                <div className="welcome-container">
+
+                    <div className="card-body">
+                        <h3 className="card-title">Welcome!</h3>
+                        <form onSubmit={submitForm} className="form-group">
+                            <input className="form-control" onChange={usernameValue} type="text" placeholder="Username" />
+                            <input className="form-control" onChange={passwordValue} type="password" placeholder="Password" value={password} />
+                            <div className="input-group row justify-content-around">
+                                <a href="#" className='create-new-acc-btn'>Create New Account +</a>
+
+                                <button type="submit" className="wc-login-btn">Login <Bi.BiLogIn /> </button>
+                            </div>
+                        </form>
+                        <Link >Forgot Password </Link>
+
+                    </div>
+                </div>
+            </div>
+            <div className='welcome-image-container'></div>
         </div>
-      </div>
-      <div className="welcome-image-container"></div>
-    </div>
-  );
+    );
 }

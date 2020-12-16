@@ -1,14 +1,56 @@
-nav {
-  height: 70px;
-  display: flex;
-  align-items: center;
+
+
+nav{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid red; */
 }
 
-nav h1 {
-  margin: 0;
-  margin-left: 25px;
-  font-family: Avenir Next;
+nav h1{
+    margin: 0;
+    margin-left: 20px;
+    cursor: pointer;
+    font-family: Avenir Next;
   font-style: normal;
   font-weight: bold;
   font-size: 48px;
+}
+
+.nav-icons-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    justify-content: center;
+    /* border: 1px solid red; */
+    margin-right: 20px;
+    Font-family: Avenir Next;
+Font-style: Regular;
+font-weight: bold;
+cursor: pointer;
+
+}
+
+.nav-icon{
+    width: 35px;
+    height: 35px;
+    /* border: 1px solid red; */
+}
+.nav-user-icon{
+    background-image: url("../img/Icons/user-icon.png");
+    background-size: 75px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.icon-info p{
+    font-size: 12px;
+    /* border: 1px solid red; */
 }

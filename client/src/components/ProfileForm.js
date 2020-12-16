@@ -48,7 +48,6 @@ const ProfileForm = () => {
             interests: [...formData.interests, id]
         })
     }
-
     return (
         <div>
              <form className='form' action="/register" method='POST'>
@@ -88,8 +87,8 @@ const ProfileForm = () => {
                   <button type="submit"  className="btn btn-primary">REGISTER</button>
                 </div>
             </form>
-        </div>
-    )
+    </div>
+  )
 }
 
 export default ProfileForm
