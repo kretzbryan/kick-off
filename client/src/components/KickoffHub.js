@@ -69,10 +69,10 @@ export default function KickoffHub() {
         <div className={styles.main_div}>  
             <h1>Kickoff Hub</h1>
             <div className={styles.grouping_div}>
-                {groupFunction}
+                {groupFunction()}
             </div>
             <div className={styles.grouping_div}>
-                {kickoffFunction}
+                {kickoffFunction()}
             </div>
           );
         });
