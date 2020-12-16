@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import RoomChat from "./components/RoomChat";
 import NavBar from "./components/NavBar"
 import Homepage from "./components/Homepage";
+import CreateProfile from './components/CreateProfile';
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/room" component={RoomChat} />
+        <Route path="/signup" component={CreateProfile} />
       </Switch>
     </BrowserRouter>
   );

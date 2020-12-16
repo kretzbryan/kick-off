@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/related', auth,  async ( req, res ) => {
     try {
         const user = await db.User.findById(req.user)
-        const related = await db.Kickoff.find({interests: {$in: user.interests}});
+        const related = await db.Kickoff.find({interests: {$in: user.interests}}).populate('interests');
         
         res.json(related)
     } catch (err) {
