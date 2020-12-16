@@ -91,7 +91,7 @@ Router.post("/login", async (req, res) => {
                 id: user._id,
                 username: user.username,
                 firstName: user.firstName,
-                lastname: user.lastName,
+                lastName: user.lastName,
                 interests: user.interests,
                 createdKickoffs: user.interests,
                 pastKickoffs: user.pastKickoffs,
