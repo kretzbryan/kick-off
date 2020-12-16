@@ -35,6 +35,14 @@ const ProfileForm = () => {
             console.log(err.message)
         }
     }
+    const clickThis = async (e) => {
+        try {
+            const res = await api.get('/kickoff');
+            console.log(res.data)
+        } catch (err) {
+            
+        }
+    }
 
     const addInterest = e => {
         e.preventDefault();
@@ -74,7 +82,7 @@ const ProfileForm = () => {
                 <label htmlFor='password2' className='form__label'>Retype Password</label>
               </div>
                 <div className="modal-footer">
-                  <button type="submit" className="btn btn-primary">REGISTER</button>
+                  <button type="submit" onClick={clickThis} className="btn btn-primary">REGISTER</button>
                 </div>
             </form>
         </div>
