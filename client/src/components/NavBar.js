@@ -22,9 +22,9 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    if (userData) {
-      redirectToDashboard();
-    }
+    // if (userData) {
+    //   redirectToDashboard();
+    // }
   }, []);
 
   return (

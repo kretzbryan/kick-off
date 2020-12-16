@@ -16,29 +16,38 @@ export default function KickoffPanel() {
     return (
         <div className="kickoff-side-panel">
             <h5>Your Kickoffs</h5>
-            <KickoffLink title="random-title1" />
-            <KickoffLink title="random-title2" />
-            <KickoffLink title="random-title3" />
-            <KickoffLink title="random-title4" />
-            <KickoffLink title="random-title5" />
-            <KickoffLink title="random-title6" />
-            <KickoffLink title="random-title7" />
-            {
-                userData.user &&
-                <>
-                    {
-                        // this will iterate over the array of user kickoffs and if the array is empty, it will display a message that says: no kickoff are addded (yet)
-                        userData.user.createdKickoffs > 0 ?
-                            userData.user.createdKickoffs.map((kickoff) => {
-                                return < KickoffLink title={kickoff.title} />
-                            })
-                            :
-                            <p>
-                                You don't have any kickoffs
+
+            <div className="side-panel-links-container">
+                <Link to="/kickoffInfo/5fda729eeddafacf65f589b4"> Random title1 </Link>
+                <Link to="/kickoffInfo/5fda6e0059c39618d77a4d91"> Random title2 </Link>
+                <Link to="/kickoffInfo/5fda6e8659c39618d77a4d93"> Random Title3
+                </Link>
+                <Link to="/kickoffInfo/5fda6f4d59c39618d77a4d94"> Random Title4
+                </Link>
+                <Link to="/kickoffInfo/5fda6fde59c39618d77a4d95"> Random Title5
+                </Link>
+                {
+                    userData.user &&
+                    <>
+                        {
+                            // this will iterate over the array of user kickoffs and if the array is empty, it will display a message that says: no kickoff are addded (yet)
+                            userData.user.createdKickoffs > 0 ?
+                                userData.user.createdKickoffs.map((kickoff) => {
+                                    return (
+                                        <Link to={"/kickoffInfo/" + kickoff._id}>
+                                            kickoff.title
+                                        </Link>
+                                    )
+                                })
+                                :
+                                <p>
+                                    You don't have any kickoffs
                             </p>
-                    }
-                </>
-            }
+                        }
+                    </>
+                }
+
+            </div>
 
         </div >
     )

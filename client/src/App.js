@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage";
 import KickoffHub from './components/KickoffHub';
 import axios from "axios";
+import KickoffPage from "./components/KickOffPage";
 
 
 ////importing the user context
@@ -71,7 +72,8 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route path="/room" component={RoomChat} />
           <Route path="/signup" component={CreateProfile} />
-          <Route path="/kickoffhub" component={KickoffHub}/>
+          <Route path="/kickoffhub" component={KickoffHub} />
+          <Route path="/kickoffInfo/:id" component={KickoffPage} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>

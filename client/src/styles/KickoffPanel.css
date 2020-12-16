@@ -2,5 +2,12 @@
 
 
 .kickoff-side-panel{
-    border: 1px solid black;
+    border-right: 1px solid black;
+    padding: 12px;
+}
+
+
+.side-panel-links-container{
+    display: flex;
+    flex-direction: column;
 }
