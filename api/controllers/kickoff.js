@@ -28,7 +28,7 @@ router.get('/related', auth,  async ( req, res ) => {
 })
 
 
-
+// Create new kickoff
 // This has been tested
 router.post('/', auth, async ( req, res ) => {
     const { title,  startTime, description, interests, user, group } = req.body
@@ -52,7 +52,7 @@ router.post('/', auth, async ( req, res ) => {
 })
 
 
-
+// Get kickoff by id
 // This has been tested
 router.get('/:id', async (req, res) => {
     try {
@@ -63,6 +63,8 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
+// Edit kickoff found by id
 router.put('/:id', async ( req, res ) => {
     try {
         const updatedKickoff = await db.Kickoff.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -84,7 +86,7 @@ router.delete('/:id', auth, async ( req, res ) => {
         if (kickoff.group !== null) {
             const group = await db.Group.findById(kickoff.group);
 
-            if (group.creator === user._id || kickoff.creator === user._id){ 
+            if (group.creator.toString() === user._id.toString() || kickoff.user.toString() === user._id.toString()){ 
 
                 //  if the creator of the group is also the creator of the kickoff, this removes the id from the users created kickoffs
                 if(group.creator !== user._id) {
@@ -95,19 +97,20 @@ router.delete('/:id', auth, async ( req, res ) => {
                 await group.upcomingKickoffs.remove(kickoff);
                 await group.save()
                 await kickoff.remove();
-                res.json('Deleted!')
+                res.json({message: 'Deleted!'})
             }
         }
 
-        if ( kickoff.creator === user._id) {
-            await user.createdKickoffs.remove(kickoff);
+        if ( kickoff.user.toString() === user._id.toString()) {
+            await user.createdKickoffs.remove(kickoff._id);
             await user.save();
-            await kickoff.remove();
-            res.json('Deleted!')
+            const deletedKickoff = await kickoff.remove();
+            deletedKickoff.save();
+            return res.json(deletedKickoff)
         }
     } catch (err) {
         console.log(err)
-        res.json(err)
+        res.json(err.message)
     }
 })
 

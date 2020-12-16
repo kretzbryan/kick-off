@@ -27,9 +27,14 @@ router.get('/all', async ( req, res ) => {
 })
 
 router.get('/:search', async ( req, res ) => {
+    const search = new RegExp(req.params.search)
     try {
-        const foundTags = await db.Interest.find({"tag": /.*req.params.search.*/});
-        res.json(tags)
+        const foundTags = await db.Interest.find({
+            tag: {
+                $regex: search
+            }
+        });
+        res.json(foundTags)
     } catch (err) {
         res.json(err)
     }
