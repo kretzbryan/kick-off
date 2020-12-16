@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const GroupSchema = new mongoose.Schema({
   name: { type: String, unique: true, required: true },
+  photo: {type: String},
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -26,4 +27,4 @@ const GroupSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model('Group', GroupSchema)
+module.exports = mongoose.model("Group", GroupSchema);

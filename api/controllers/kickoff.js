@@ -31,10 +31,11 @@ router.get('/related', auth,  async ( req, res ) => {
 // Create new kickoff
 // This has been tested
 router.post('/', auth, async ( req, res ) => {
-    const { title,  startTime, description, interests, user, group } = req.body
+    const { title, photo, startTime, description, interests, user, group } = req.body
     try {
         const newKickoff = new db.Kickoff({
             title,
+            photo,
             startTime,
             user,
             group,

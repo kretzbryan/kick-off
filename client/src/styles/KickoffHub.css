@@ -1,0 +1,30 @@
+.main_div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    background-image: linear-gradient(#ffffff, #BBDAE7);
+}
+
+.grouping_div {
+    width: 80%;
+    height: 30%;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+}
+
+.boxes {
+    text-align: center;
+    font-size: 3vh;
+    height: 5vh;
+    width: 7vw
+}
+
+.txt {
+    font-family: Avenir Next;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+}
