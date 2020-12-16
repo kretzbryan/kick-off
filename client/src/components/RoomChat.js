@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import KickoffPanel from "./panels/KickoffPanel";
 import UserContext from "../context/UserContext";
@@ -10,10 +10,10 @@ export default function RoomChat() {
         setUserData({
             token: undefined,
             user: undefined,
-        })
+        });
         localStorage.setItem("auth-token", "");
         history.push("/");
-    }
+    };
 
 
     return (

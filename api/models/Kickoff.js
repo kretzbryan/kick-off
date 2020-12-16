@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const KickoffSchema = new mongoose.Schema({
   title: { type: String, required: true },
+  photo: {type: String},
   startTime: { type: String, required: true },
   description: { type: String, requirted: true },
   interests: [
@@ -26,4 +27,4 @@ const KickoffSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Kickoff', KickoffSchema)
+module.exports = mongoose.model("Kickoff", KickoffSchema);
