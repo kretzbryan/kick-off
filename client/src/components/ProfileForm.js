@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import api from '../utils/api';
+import ChosenInterests from './ChosenInterests';
 
 const ProfileForm = () => {
     const [foundInterests, setFoundInterests] = useState();
@@ -40,19 +41,50 @@ const ProfileForm = () => {
         e.preventDefault();
         setSearchValue(e.target.value);
     }
-    const addInterest = (e, id) => {
-        e.preventDefault();
-        console.log(id)
-        setFormData({
+    // const addInterest = (e, id) => {
+    //     e.preventDefault();
+    //     console.log(id)
+    //     setFormData({
+    //         ...formData,
+    //         interests: [...formData.interests, id]
+    //     })
+    // }
+
+    const addInterest = async (e) => {
+      try {
+        const res1 = await api.get(`/interest/tag/${searchValue}`)
+        if(res1.data) {
+          console.log('res1 id', res1.data.tag)
+          await setFormData({
             ...formData,
-            interests: [...formData.interests, id]
+            interests: [...formData.interests, res1.data]
         })
+        } 
+
+        // else {
+        //   const config = {
+        //     'Content-Type': 'application/json'
+        //   }
+
+        //   const body = JSON.stringify(searchValue);
+        //   const res2 = await api.post('/interest', body, config)
+        //   console.log(res2.data)
+        //   await setFormData({
+        //             ...formData,
+        //             interests: [...formData.interests, res2.data.interest]
+        //         })
+
+         
+        // }        
+      } catch (err) {
+        console.log(err)
+      }
     }
     return (
-        <div>
-             <form className='form' action="/register" method='POST'>
-              <p id='register-error'>
-              </p>
+      <Fragment>
+        <div className='row'>
+          <div className="col avatar-icon"></div>
+             <form className='register-form col' action="/register" method='POST'>
               <div className="form__group">
                 <input className='form__input' type="text" placeholder='First Name' name='firstName' value={firstName} required onChange={onChange} />
                 <label htmlFor='firstName' className='form__label'>First Name</label>
@@ -77,17 +109,23 @@ const ProfileForm = () => {
                 <input className='form__input' type="password" placeholder='Retype Password' name="passwordMatch" minLength="6" value={passwordMatch} required onChange={onChange} />
                 <label htmlFor='password2' className='form__label'>Retype Password</label>
               </div>
-                <input list="interests" value={searchValue} onChange={searchInterests}/>
-                <datalist id="interests" >
-                    {foundInterests && foundInterests.map( interest => {
-                        return <option id={interest._id} onClick={(e) => addInterest(e, interest.id)} >{`#${interest.tag}`}</option>
-                    })}
-                </datalist>  
-                <div className="modal-footer">
+                
+                <div className="">
                   <button type="submit"  className="btn btn-primary">REGISTER</button>
                 </div>
             </form>
-    </div>
+      </div>
+      <div className="row">
+          <input list="interests" value={searchValue} onChange={searchInterests}/>
+            <datalist id="interests" >
+                {foundInterests && foundInterests.map( interest => {
+                    return <option id={interest._id} >{interest.tag}</option>
+                })}
+            </datalist>  <button type='button' onClick={addInterest} >add interest</button>
+      </div>
+        <div className="row">
+            <ChosenInterests interests={formData.interests}/></div>
+      </Fragment>
   )
 }
 

@@ -9,8 +9,12 @@ const CreateProfile = () => {
     return (
         <Fragment>
             <main className="row create-profile">
+                <div className="col-sm-4">
+                    <div className="row">
+                        <ProfileForm />
+                    </div>
+                </div>
                 <div className="col-sm-4"></div>
-                <div className="col-sm-4"><ProfileForm /></div>
             </main>
         </Fragment>
     )
