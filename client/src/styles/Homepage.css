@@ -1,1 +1,151 @@
+.homepage-top {
+  display: flex;
+  padding: 25px;
+  justify-content: space-around;
+  /* border: 1px solid red; */
+  min-height: 20vh;
+  position: relative;
+}
 
+.homepage-top > h3 {
+  text-align: center;
+  color: #6f6c6c;
+  /* border: 1px solid yellow; */
+  margin-right: 300px;
+  font-family: Raleway;
+  font-style: italic;
+  font-weight: bold;
+  font-family: Raleway;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  text-align: center;
+}
+
+.welcome-container {
+  position: absolute;
+  right: 30px;
+  top: -55px;
+  /* border: 1px solid red; */
+  width: 350px;
+}
+.form-control {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.welcome-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-container h3 {
+  width: 100%;
+  color: rgb(12, 12, 12);
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 66px;
+  text-align: center;
+}
+
+.welcome-container input {
+  margin-bottom: 12px;
+  color: black;
+}
+
+.create-new-acc-btn {
+  background-color: #3ec6ff;
+  border: 1px solid black;
+  border-radius: 18px;
+  height: 35px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 7px;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.create-new-acc-btn:hover {
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-container button[type="submit"] {
+  background: #41f59f;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.welcome-container form button {
+  outline: none;
+}
+
+.welcome-container form button:hover {
+  outline: none;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+/*              CSS FOR THE IMAGE IN WELCOME PAGE     */
+
+.welcome-image-container {
+  width: 97vw;
+  height: 40vw;
+  background-image: url("../img/people.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: auto;
+  /* margin-top: 50px; */
+}
+
+@media (max-width: 780px) {
+  #root {
+    min-width: 376px;
+  }
+  .homepage-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .homepage-top > h3 {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 50px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .welcome-container {
+    position: unset;
+  }
+  .welcome-image-container {
+    margin-top: 0;
+  }
+}
