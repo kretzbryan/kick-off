@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 
 const ProfileForm = () => {
+    const [foundInterests, setFoundInterests] = useState();
+    const [searchValue, setSearchValue] = useState('')
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -12,9 +14,19 @@ const ProfileForm = () => {
         interests: []
     })
 
-    const [foundInterests, setFoundInterests] = useState({})
-
     const { firstName, lastName, email, username, password, passwordMatch } = formData
+
+    useEffect(() => {
+        async function updateComponent() {
+            try {
+            const res = await api.get(`/interest/${searchValue}`)
+            setFoundInterests(res.data)
+            } catch (err) {
+                console.log(err.message)
+            }
+        }
+        updateComponent();
+    }, [searchValue])
 
     const onChange = e => {
         e.preventDefault();
@@ -24,22 +36,16 @@ const ProfileForm = () => {
         })
     }
 
-    const searchInterests = async (e) => {
+    const searchInterests = (e) => {
         e.preventDefault();
-        try {
-        const res =  api.get(`/interests/${e.target.value}`)
-        setFoundInterests({
-            ...res.data
-        })
-        } catch (err) {
-            console.log(err.message)
-        }
+        setSearchValue(e.target.value);
     }
-    const addInterest = e => {
+    const addInterest = (e, id) => {
         e.preventDefault();
+        console.log(id)
         setFormData({
             ...formData,
-            interests: [formData.interests, ...e.target.value]
+            interests: [...formData.interests, id]
         })
     }
 
@@ -72,8 +78,14 @@ const ProfileForm = () => {
                 <input className='form__input' type="password" placeholder='Retype Password' name="passwordMatch" minLength="6" value={passwordMatch} required onChange={onChange} />
                 <label htmlFor='password2' className='form__label'>Retype Password</label>
               </div>
+                <input list="interests" value={searchValue} onChange={searchInterests}/>
+                <datalist id="interests" >
+                    {foundInterests && foundInterests.map( interest => {
+                        return <option id={interest._id} onClick={(e) => addInterest(e, interest.id)} >{`#${interest.tag}`}</option>
+                    })}
+                </datalist>  
                 <div className="modal-footer">
-                  <button type="submit" onClick={clickThis} className="btn btn-primary">REGISTER</button>
+                  <button type="submit"  className="btn btn-primary">REGISTER</button>
                 </div>
             </form>
         </div>
