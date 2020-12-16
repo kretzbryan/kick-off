@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import RoomChat from "./components/RoomChat";
 import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage";
+import KickoffHub from './components/KickoffHub';
 import axios from "axios";
 
 
@@ -70,6 +71,7 @@ function App() {
           <Route exact path="/" component={Homepage} />
           <Route path="/room" component={RoomChat} />
           <Route path="/signup" component={CreateProfile} />
+          <Route path="/kickoffhub" component={KickoffHub}/>
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>
