@@ -11,6 +11,7 @@ import axios from "axios";
 ////importing the user context
 import UserContext from "./context/UserContext"; //can be set up like a component
 
+import CreateProfile from './components/CreateProfile';
 function App() {
 
   //this variable will be used by usercontext.provider
@@ -28,7 +29,7 @@ function App() {
     // console.log(token);
 
     //START OF FIRST AXIOS CALL **********
-    const tokenResponse = await axios.post("http://localhost:5000/user/isTokenValid", null,
+    const tokenResponse = await axios.post("http://localhost:5000/api/user/isTokenValid", null,
       {
         headers: { "x-auth-token": token }
       })
@@ -37,7 +38,7 @@ function App() {
     // console.log(tokenResponse.data);
     if (tokenResponse.data) {
       ///SECOND AXIOS CALL ******
-      const userResponse = await axios.get("http://localhost:5000/user/info",
+      const userResponse = await axios.get("http://localhost:5000/api/user/info",
         {
           headers: {
             "x-auth-token": token,
@@ -69,6 +70,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/room" component={RoomChat} />
+          <Route path="/signup" component={CreateProfile} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>

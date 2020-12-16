@@ -35,7 +35,7 @@ export default function Homepage() {
 
         try {
             const loginUser = { username, password };
-            const loginResponse = await axios.post("http://localhost:5000/user/login", loginUser);
+            const loginResponse = await axios.post("http://localhost:5000/api/user/login", loginUser);
 
             setUserData({
                 token: loginResponse.data.token,
@@ -82,5 +82,5 @@ export default function Homepage() {
             </div>
             <div className='welcome-image-container'></div>
         </div>
-    )
+    );
 }
