@@ -70,7 +70,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/room" component={RoomChat} />
-          <Route path="/signup" component={CreateProfile} />
+          <Route exact path="/signup" component={CreateProfile} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>

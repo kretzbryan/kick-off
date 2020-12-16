@@ -24,11 +24,11 @@ export default function NavBar() {
         }
     }
 
-    useEffect(() => {
-        if (userData) {
-            redirectToDashboard()
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (userData) {
+    //         redirectToDashboard()
+    //     }
+    // }, []);
 
 
     return (
