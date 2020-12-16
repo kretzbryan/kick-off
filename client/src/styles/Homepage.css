@@ -28,7 +28,7 @@
   right: 30px;
   top: -55px;
   /* border: 1px solid red; */
-  width: 350px;
+  width: 430px;
 }
 .form-control {
   background: #ffffff;
@@ -77,6 +77,8 @@
   justify-content: center;
   align-items: center;
   padding: 0 7px;
+  margin-right: -40px;
+  margin-top: 10px;
   outline: none;
   text-decoration: none;
   box-sizing: border-box;
@@ -103,6 +105,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
+  margin-top: 10px;
 }
 
 .welcome-container form button {
@@ -117,17 +120,35 @@
 /*              CSS FOR THE IMAGE IN WELCOME PAGE     */
 
 .welcome-image-container {
-  width: 97vw;
+  width: 90vw;
   height: 40vw;
   background-image: url("../img/people.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   margin: auto;
-  /* margin-top: 50px; */
+  margin-top: -3vw;
 }
 
-@media (max-width: 780px) {
+#fpLink {
+  font-family: Avenir Next;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration-line: underline;
+  color: #535353;
+}
+
+#fpLink:hover {
+  font-style: italic;
+}
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+@media (max-width: 1015px) {
   #root {
     min-width: 376px;
   }
@@ -144,8 +165,16 @@
   }
   .welcome-container {
     position: unset;
+    width: 340px;
   }
   .welcome-image-container {
     margin-top: 0;
+  }
+  .create-new-acc-btn {
+    margin-right: -30px;
+    font-size: 14px;
+  }
+  .welcome-container button[type="submit"] {
+    font-size: 14px;
   }
 }
