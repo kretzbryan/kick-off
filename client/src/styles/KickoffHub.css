@@ -4,27 +4,45 @@
     position: relative;
     text-align: center;
     background-image: linear-gradient(#ffffff, #BBDAE7);
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .grouping_div {
     width: 80%;
-    height: 30%;
-    justify-content: center;
+    height: 50%;
+    position: relative;
+    justify-content: space-between;
+    align-content: space-between;
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;
+    margin: 0 auto;
+    padding-bottom: 3vh;
 }
 
 .boxes {
+    display: flex;
+    justify-content: center;
+    position: relative;
     text-align: center;
+    align-items: center;
     font-size: 3vh;
-    height: 5vh;
-    width: 7vw
+    height: 16vh;
+    width: 18vw;
+    object-fit: contain;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 4vh;
+    border-radius: 14px;
 }
 
 .txt {
+    color: white;
+    position: relative;
     font-family: Avenir Next;
     font-style: normal;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 19px;
+    text-align: center;
 }
