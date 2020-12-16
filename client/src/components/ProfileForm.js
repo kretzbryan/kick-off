@@ -27,7 +27,7 @@ const ProfileForm = () => {
     const searchInterests = async (e) => {
         e.preventDefault();
         try {
-        const res =  api.get(`api/interests/${e.target.value}`)
+        const res =  api.get(`/interests/${e.target.value}`)
         setFoundInterests({
             ...res.data
         })
@@ -35,15 +35,6 @@ const ProfileForm = () => {
             console.log(err.message)
         }
     }
-    const clickThis = async (e) => {
-        try {
-            const res = await api.get('/kickoff');
-            console.log(res.data)
-        } catch (err) {
-            
-        }
-    }
-
     const addInterest = e => {
         e.preventDefault();
         setFormData({
