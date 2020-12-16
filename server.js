@@ -4,6 +4,7 @@ const cors = require('cors')
 const controllers = require('./api/controllers');
 const db = require('./api/models');
 const connectDB = db.connectDB;
+const bodyParser = require('body-parser')
 
 ///setting up for socket io (when needed) -----
 // const socketio = require("socket.io");
@@ -20,8 +21,9 @@ connectDB();
 const PORT = process.env.PORT || 5000;
 
 /////      MIDDLEWARE
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 
