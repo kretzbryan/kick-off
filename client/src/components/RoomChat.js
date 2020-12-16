@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
-
+import KickoffPanel from "./panels/KickoffPanel";
 import UserContext from "../context/UserContext";
 
 export default function RoomChat() {
@@ -18,6 +18,7 @@ export default function RoomChat() {
 
     return (
         <div>
+            <KickoffPanel />
             <h1> Test Page</h1>
             <h3>After loging in, a user will be redirected here </h3>
             {userData.user && <>

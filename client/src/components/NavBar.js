@@ -25,7 +25,7 @@ export default function NavBar() {
     }
 
     useEffect(() => {
-        if (userData) {
+        if (userData.user) {
             redirectToDashboard()
         }
     }, []);

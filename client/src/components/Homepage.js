@@ -45,7 +45,7 @@ export default function Homepage() {
             localStorage.setItem("auth-token", loginResponse.data.token);
 
             //login the user
-            console.log(loginResponse);
+            // console.log(loginResponse);
             setPassword("");
             history.push("/room")
         }
@@ -67,15 +67,15 @@ export default function Homepage() {
                     <div className="card-body">
                         <h3 className="card-title">Welcome!</h3>
                         <form onSubmit={submitForm} className="form-group">
-                            <input className="form-control" onChange={usernameValue} type="text" placeholder="Username" />
-                            <input className="form-control" onChange={passwordValue} type="password" placeholder="Password" value={password} />
+                            <input className="form-control" onChange={usernameValue} type="text" placeholder="Username" required />
+                            <input className="form-control" onChange={passwordValue} type="password" placeholder="Password" value={password} required />
                             <div className="input-group row justify-content-around">
-                                <a href="#" className='create-new-acc-btn'>Create New Account +</a>
+                                <a href="/signup" className='create-new-acc-btn'>Create New Account +</a>
 
                                 <button type="submit" className="wc-login-btn">Login <Bi.BiLogIn /> </button>
                             </div>
                         </form>
-                        <Link >Forgot Password </Link>
+                        <Link to="/">Forgot Password </Link>
 
                     </div>
                 </div>
