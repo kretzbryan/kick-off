@@ -6,11 +6,12 @@ const auth = require('../middleware/authentication')
 //Create a group
 
 router.post('/create', auth, async (req, res) => {
-    const { name, interests, users, upcomingKickoffs} = req.body
+    const { name, photo, interests, users, upcomingKickoffs} = req.body
     
     try {
         const group = new GroupModel({
             name,
+            photo,
             creator: req.user,
             interests,
             users,
@@ -64,7 +65,7 @@ router.get('/:id', async (req, res) => {
 //Update Group
 router.put('/:id/update', async (req, res) => {
     const query = {_id: req.params.id}
-    const updates =  {interests: req.body.interests, users: req.body.users, upcomingKickoffs: req.body.upcomingKickoffs}
+    const updates =  {name: req.body.name, photo: req.body.photo, interests: req.body.interests, users: req.body.users, upcomingKickoffs: req.body.upcomingKickoffs}
 
     try {
         const update = await GroupModel.findOneAndUpdate(query, updates, {new: true});
