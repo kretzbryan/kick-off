@@ -46,24 +46,6 @@ export default function KickoffHub() {
         })
     }
 
-  useEffect(() => {
-    axios
-      .get("groupserverurl")
-      .then((res) => {
-        setGroups(res.data);
-      })
-      .catch((err) => {
-        setMessage(err.message);
-      });
-    axios
-      .get("kickoffserverurl")
-      .then((res) => {
-        setKickoffs(res.data);
-      })
-      .catch((err) => {
-        setMessage(err.message);
-      });
-  }, []);
 
     return (
         <div className={styles.main_div}>  
@@ -74,16 +56,6 @@ export default function KickoffHub() {
             <div className={styles.grouping_div}>
                 {kickoffFunction()}
             </div>
-          );
-        });
-      }
-    });
-  };
-
-  return (
-    <div>
-      <div>{groupFunction}</div>
-      <div>{kickoffFunction}</div>
-    </div>
-  );
-}
+        </div>
+    );
+};
