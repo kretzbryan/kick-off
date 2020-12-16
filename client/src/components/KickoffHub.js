@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import styles from '../styles/KickoffHub.css'
 
 export default function KickoffHub() {
     const [groups, setGroups] = useState(null)
@@ -24,8 +25,8 @@ export default function KickoffHub() {
             {group.map((val, key) => {
                 const photo = val.photo
                 return (
-                    <div key={key} style={{backgroundImage: photo}}>
-                        <h1>{val.name}</h1>
+                    <div key={key} className={styles.boxes} style={{backgroundImage: photo}}>
+                        <h1 className={styles.txt}>{val.name}</h1>
                     </div>     
                 )
             })}
@@ -37,10 +38,8 @@ export default function KickoffHub() {
             {kickoff.map((val, key) => {
                 const photo = val.photo
                 return (
-                    <div key={key} style={{backgroundImage: photo}}>
-                        <h1>{val.title}</h1>
-                        <p>{val.description}</p>
-                        <p>{val.startTime}</p>
+                    <div key={key} className={styles.boxes} style={{backgroundImage: photo}}>
+                        <h1 className={styles.txt}>{val.title}</h1>
                     </div>
                 )
             })}
@@ -49,11 +48,12 @@ export default function KickoffHub() {
 
 
     return (
-        <div>
-            <div>
+        <div className={styles.main_div}>  
+            <h1>Kickoff Hub</h1>
+            <div className={styles.grouping_div}>
                 {groupFunction}
             </div>
-            <div>
+            <div className={styles.grouping_div}>
                 {kickoffFunction}
             </div>
         </div>
