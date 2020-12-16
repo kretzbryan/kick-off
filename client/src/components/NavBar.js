@@ -11,11 +11,11 @@ export default function NavBar() {
   const history = useHistory();
 
   const redirectToDashboard = () => {
-    history.push("/room");
+    //history.push("/room");
   };
   const toLandingPage = () => {
     if (userData.user) {
-      history.push("/room");
+      //history.push("/room");
     } else {
       history.push("/");
     }

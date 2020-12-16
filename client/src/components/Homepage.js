@@ -44,7 +44,6 @@ export default function Homepage() {
             });
 
             localStorage.setItem("auth-token", loginResponse.data.token);
-
             //login the user
             console.log(loginResponse);
             setPassword("");

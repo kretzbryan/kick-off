@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '../styles/KickoffHub.css'
+import '../styles/KickoffHub.css'
 
 export default function KickoffHub() {
-  const [groups, setGroups] = useState(null)
-  const [kickoffs, setKickoffs] = useState(null)
+  const [groups, setGroups] = useState([])
+  const [kickoffs, setKickoffs] = useState([])
   const [message, setMessage] = useState("")
 
   useEffect(() => {
@@ -20,64 +20,48 @@ export default function KickoffHub() {
     });
   }, [])
 
-  const groupFunction = () => {
-    groups.forEach(group => {
-      {
-        group.map((val, key) => {
-          const photo = val.photo
-          return (
-            <div key={key} className={styles.boxes} style={{ backgroundImage: photo }}>
-              <h1 className={styles.txt}>{val.name}</h1>
-            </div>
-          )
-        })
-      }
-    })
-  };
+  // const groupFunction = () => {
+  //     groups.map((group) => {
+  //             return (
+  //                 <div key={group._id} className={boxes} style={{backgroundImage: group.photo}}>
+  //                     <h1 className={txt}>{group.name}</h1>
+  //                 </div>     
+  //             )
+  //         })
+  // };
 
-  const kickoffFunction = () => {
-    kickoffs.forEach(kickoff => {
-      {
-        kickoff.map((val, key) => {
-          const photo = val.photo
-          return (
-            <div key={key} className={styles.boxes} style={{ backgroundImage: photo }}>
-              <h1 className={styles.txt}>{val.title}</h1>
-            </div>
-          )
-        })
-      }
-    })
-  }
+  // const kickoffFunction = () => {
+  //     kickoffs.map((kickoff) => {
+  //             return (
+  //                 <div key={kickoff._id} className={boxes} style={{backgroundImage: `url(${kickoff.photo})`}}>
+  //                     <h1 className={txt}>{kickoff.title}</h1>
+  //                 </div>
+  //             )
+  //         })
+  // }
 
-  useEffect(() => {
-    axios
-      .get("groupserverurl")
-      .then((res) => {
-        setGroups(res.data);
-      })
-      .catch((err) => {
-        setMessage(err.message);
-      });
-    axios
-      .get("kickoffserverurl")
-      .then((res) => {
-        setKickoffs(res.data);
-      })
-      .catch((err) => {
-        setMessage(err.message);
-      });
-  }, []);
 
   return (
-    <div className={styles.main_div}>
+    <div className="main_div">
       <h1>Kickoff Hub</h1>
-      <div className={styles.grouping_div}>
-        {groupFunction()}
+      <div className="grouping_div">
+        {groups !== [] && groups.map((group) => {
+          return (
+            <div key={group._id} className="boxes" style={{ backgroundImage: `url(${group.photo})` }}>
+              <h1 className="txt">{group.name}</h1>
+            </div>
+          )
+        })}
       </div>
-      <div className={styles.grouping_div}>
-        {kickoffFunction()}
+      <div className="grouping_div">
+        {kickoffs !== [] && kickoffs.map((kickoff) => {
+          return (
+            <div key={kickoff._id} className="boxes" style={{ backgroundImage: `url(${kickoff.photo})` }}>
+              <h1 className="txt">{kickoff.title}</h1>
+            </div>
+          )
+        })}
       </div>
     </div>
   );
-}
+};
