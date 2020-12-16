@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import ProfileForm from './ProfileForm'
 
 const CreateProfile = () => {
     const [formData, setFormData] = useState({
@@ -8,8 +9,8 @@ const CreateProfile = () => {
     return (
         <Fragment>
             <main className="row create-profile">
-                <div className="col-sm-2"></div>
                 <div className="col-sm-4"></div>
+                <div className="col-sm-4"><ProfileForm /></div>
             </main>
         </Fragment>
     )
